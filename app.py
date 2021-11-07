@@ -19,10 +19,18 @@ root = os.path.dirname(os.path.realpath(__file__))  # Global Root path definitio
 def home():
     return static_file('index.html',root=os.path.join(root, 'templates'))
 
-
+@get('/<path:path>') # Other routes to handle dependant front end libraries
+@get('/index.html/<path:path>')
+@get('/login.html/<path:path>')
+@get('/index/<path:path>')
+@get('/login')
+@get('/login/<path:path>')
+@get('/redirect.html/<path:path>')
+def get_js(path):
+    return static_file(path,root=os.path.join(root, 'templates'))
 
 if __name__ == '__main__':  # Set up when running stand alone
 
     print('Starting localhost webserver at port 3031')
-    server = WSGIServer(('localhost', 3030), default_app(), handler_class=WebSocketHandler)
+    server = WSGIServer(('localhost', 3031), default_app(), handler_class=WebSocketHandler)
     server.serve_forever()
