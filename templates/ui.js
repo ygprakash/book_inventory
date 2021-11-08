@@ -114,10 +114,12 @@ myapp.controller('viewCtrl',['$scope', '$state', '$localStorage','$http', functi
     $scope.del_check = false;
     $scope.val ='';
 
-    $scope.upd = function (line,line2) {
-        var id = line['User Id'];
-        var name = line['User Name'];
-        $http.get("/update?id="+id+"&name="+name+"&isadmin="+line2).success(function (data, status) {
+    $scope.upd = function (line55,line5,line6,line7) {
+        var id = line55;
+        var author = line5;
+        var bname = line6;
+        var pubon = line7;
+        $http.get("/update?author="+author+"&bname="+bname+"&pubon="+pubon+"&id="+id).success(function (data, status) {
             $state.globaldata = data;
             $localStorage.globaldata = data;
             $state.go($state.transitionTo('root.redirectCtrl'))
@@ -127,8 +129,22 @@ myapp.controller('viewCtrl',['$scope', '$state', '$localStorage','$http', functi
         });
     };
     $scope.del = function (line) {
-        var id =line['User Id'];
+        var id =line['Book Id'];
         $http.get("/del?id="+id).success(function (data, status) {
+            $state.globaldata = data;
+            $localStorage.globaldata = data;
+            $state.go($state.transitionTo('root.redirectCtrl'));
+        }).error(function (data, status){
+           console.log(data);
+           console.log(status);
+        });
+    };
+        $scope.add = function (line1,line2,line3,line4) {
+        var id =line1;
+        var author = line2;
+        var name = line3;
+        var date_published = line4;
+        $http.get("/add?id="+id+"&name="+name+"&author="+author+"&date_published="+date_published).success(function (data, status) {
             $state.globaldata = data;
             $localStorage.globaldata = data;
             $state.go($state.transitionTo('root.redirectCtrl'));

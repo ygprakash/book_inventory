@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
+</head>
+<body ng-app="myapp">
+    <table style="width:100%" ng-controller="viewCtrl">
+      <tr>
+        <th>Book Id</th>
+        <th>Book Author</th>
+        <th>Book Name</th>
+          <th>Published On</th>
+          <th>Book Added On</th>
+          <th>Details Updated On</th>
+          <th>Action</th>
+      </tr>
+        <tr ng-repeat="key in data">
+            <td>{{key['Book Id']}}</td>
+          <td ><input contenteditable type="text" ng-model="key['Book Author']"></td>
+          <td ><input contenteditable type="text" ng-model="key['Book Name']"></td>
+          <td ><input contenteditable type="text" ng-model="key['Published On']"></td>
+          <td>{{key['Date_added']}}</td>
+          <td>{{key['Updated_Datetime']}}</td>
+          <td><button type="button" ng-click="upd(key['Book Id'],key['Book Author'],key['Book Name'],key['Published On'])" class="btn btn-primary">Update</button>
+          <button type="button" ng-click="del(key)" class="btn btn-warning">Delete</button> </td>
+        </tr>
+        <tr>
+            <td><input type="text" name="Book Id" id="Book Id" ng-model="line1"></td>
+          <td><input type="text" name="Book Author" id="Book Author" ng-model="line2"></td>
+          <td><input type="text" name="Book Name" id="Book Name" ng-model="line3"></td>
+            <td><input type="text" name="Published On" id="Published On" ng-model="line4"></td>
+          <td></td>
+          <td></td>
+          <td><button type="button" ng-click="add(line1,line2,line3,line4)" class="btn btn-primary">Add</button>
+        </tr>
+        </table>
+<div ng-controller="viewCtrl" ng-value="val">{{val}}</div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
